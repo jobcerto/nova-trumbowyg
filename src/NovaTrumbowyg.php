@@ -13,22 +13,6 @@ class NovaTrumbowyg extends Field
      */
     public $component = 'nova-trumbowyg';
 
-    public function __construct(string $name, ?string $attribute = null, ?mixed $resolveCallback = null)
-    {
-        parent::__construct($name, $attribute, $resolveCallback);
-
-        $this->withMeta([
-            'options' => [
-                'btns' => [
-                    ['bold', 'italic'],
-                    ['unorderedList', 'orderedList'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ['link', 'insertImage'],
-                ],
-            ]
-        ]);
-    }
-
     /**
      * Allow to pass any existing Trumbowyg option to the editor.
      * Consult the Trumbowyg documentation [https://alex-d.github.io/Trumbowyg/documentation/#basic-options]
@@ -39,10 +23,24 @@ class NovaTrumbowyg extends Field
      */
     public function options(array $options)
     {
-        $currentOptions = $this->meta['options'];
-        
         return $this->withMeta([
-            'options' => array_merge($currentOptions, $options)
+            'options' => $options,
         ]);
+    }
+
+    public function meta()
+    {
+        $options = [
+            'options' => [
+                'btns' => [
+                    ['bold', 'italic'],
+                    ['unorderedList', 'orderedList'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['link', 'insertImage'],
+                ],
+            ],
+        ];
+
+        return array_merge($options, $this->meta);
     }
 }
