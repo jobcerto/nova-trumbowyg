@@ -15,6 +15,7 @@
         "laravel-nova": "^1.0"
     },
     "dependencies": {
+        "jquery": "^3.3.1",
         "vue": "^2.5.0",
         "vue-trumbowyg": "^3.4.0"
     }
